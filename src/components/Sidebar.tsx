@@ -9,6 +9,7 @@ const Sidebar = () => {
    */
   const { logout, user } = useAuth();
   const pathname = usePathname();
+  const { commonRoutes, librarianRoutes } = routers;
 
   /**
    * component functions
@@ -19,18 +20,36 @@ const Sidebar = () => {
       <div className="mt-5">
         {/* the logo */}
         <div className="flex justify-center">
-          <Logo logoStyles="text-[2.5rem]" dotStyles="w-2 h-2 bg-secondary" />
+          <Logo logoStyles="text-[2.5rem]" dotStyles="w-2 h-2 bg-primary" />
         </div>
 
         {/* the links */}
         <ul className="flex flex-col gap-2  pt-6">
-          links
+          {/* admin (librarian routes) */}
+          {user?.role === "admin" &&
+            commonRoutes
+              .concat(librarianRoutes)
+              .map((librarianRoute, routeIndex) => (
+                <NavLink
+                  key={routeIndex}
+                  route={librarianRoute}
+                  type="medium"
+                  fullWidth={true}
+                  active={pathname === librarianRoute.to && "navLinkActive"}
+                />
+              ))}
         </ul>
       </div>
 
       {/* the logout button */}
       {user && (
-        <Button title="logout" intent="primary" type="button" form="large" purpose={logout} />
+        <Button
+          title="logout"
+          intent="primary"
+          type="button"
+          form="large"
+          purpose={logout}
+        />
       )}
     </aside>
   );

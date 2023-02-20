@@ -33,12 +33,12 @@ const signupSchema = object({
   })
     .trim()
     .min(5),
-  password_confirmation: string({
+  password_confirm: string({
     required_error: "Password is required.",
   })
     .trim()
     .min(5),
-}).refine((data) => data.password === data.password_confirmation, {
+}).refine((data) => data.password === data.password_confirm, {
   message: "Passwords don't match",
   path: ["password_confirm"],
 });
@@ -51,6 +51,6 @@ const passwordUpdateSchema = object({
   path: ["confirm"],
 });
 
-const auth_schemas = { loginSchema, signupSchema, passwordUpdateSchema };
+const authSchemas = { loginSchema, signupSchema, passwordUpdateSchema };
 
-export default auth_schemas;
+export default authSchemas;

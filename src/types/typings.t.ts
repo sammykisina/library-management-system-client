@@ -5,6 +5,12 @@ export type LoginData = {
   password: string;
 };
 
+export type SignupData = {
+  email: string;
+  name: string;
+  password: string;
+};
+
 export type Route = {
   inactiveIcon?: ReactNode;
   activeIcon?: ReactNode;

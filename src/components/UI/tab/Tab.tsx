@@ -44,7 +44,8 @@ const Tab: FC<TabProps> = ({
                   key={singleTabsDataIndex}
                   icon={singleTabsData.icon}
                   iconWrapperStyles={`flex items-center gap-x-2 px-6 py-3  rounded-xl  uppercase text-sm w-fit border ${
-                    singleTabsDataIndex === index && "border-orange text-orange"
+                    singleTabsDataIndex === index &&
+                    "border-primary text-primary"
                   } `}
                   purpose={() => setIndex(singleTabsDataIndex)}
                 />
@@ -53,7 +54,7 @@ const Tab: FC<TabProps> = ({
                   <button
                     className={`duration-300 ${
                       singleTabsDataIndex === index &&
-                      "border-orange text-orange"
+                      "border-primary text-white"
                     }`}
                     onClick={() => setIndex(singleTabsDataIndex)}
                   >

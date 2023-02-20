@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { AuthAPI } from "@/api";
-import type { LoginData } from "src/types/typings.t";
+import type { LoginData, SignupData } from "src/types/typings.t";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { Notifications } from "@/components";
@@ -38,6 +38,22 @@ const useAuth = () => {
       Notifications.successNotification(data.message);
     },
   });
+
+  const { mutateAsync: signupMutateAsync, isLoading: isSigningUp } =
+    useMutation({
+      mutationFn: (signupData: SignupData) => {
+        return AuthAPI.signup(signupData);
+      },
+
+      onSuccess: async (data) => {
+        Cookies.set("user", JSON.stringify(data.user));
+        Cookies.set("token", data.token);
+
+        await redirect();
+        router.refresh();
+        Notifications.successNotification(data.message);
+      },
+    });
 
   const {
     mutateAsync: updatePasswordMutateAsync,
@@ -84,6 +100,8 @@ const useAuth = () => {
     logout,
     updatePasswordMutateAsync,
     isUpdatingPassword,
+    signupMutateAsync,
+    isSigningUp,
   };
 };
 

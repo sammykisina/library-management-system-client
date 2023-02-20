@@ -52,8 +52,8 @@ const Table = ({
         >
           {/* the global search section */}
           <GlobalFilter
-            pre_global_filtered_rows={preGlobalFilteredRows}
-            global_filter={globalFilter}
+            preGlobalFilteredRows={preGlobalFilteredRows}
+            globalFilter={globalFilter}
             setGlobalFilter={setGlobalFilter}
           />
 
@@ -79,11 +79,11 @@ const Table = ({
         }`}
       >
         <div
-          className={`border-primary/50 w-full overflow-y-scroll  rounded-[2rem] border  scrollbar-hide `}
+          className={`w-full overflow-y-scroll rounded-[2rem]  border border-secondary/10  scrollbar-hide `}
         >
           <table
             {...getTableProps()}
-            className="divide-primary mx-auto w-full  min-w-full max-w-4xl divide-y overflow-hidden whitespace-nowrap    bg-white"
+            className="mx-auto w-full min-w-full  max-w-4xl divide-y divide-secondary/40 overflow-hidden whitespace-nowrap    bg-white"
           >
             {/* the table head */}
             <thead className=" ">
@@ -96,7 +96,7 @@ const Table = ({
                     <th
                       key={column_index}
                       scope="col"
-                      className="text-primary/50 group px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider"
+                      className="group px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-secondary"
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
                       <div className="flex items-center justify-start">
@@ -122,7 +122,7 @@ const Table = ({
             {/* the table body */}
             <tbody
               {...getTableBodyProps()}
-              className="divide-primary divide-y bg-white duration-300"
+              className="divide-y divide-secondary/10 bg-white duration-300"
             >
               {rows.map((row, i) => {
                 // new
@@ -135,7 +135,7 @@ const Table = ({
                           <td
                             key={cell_index}
                             {...cell.getCellProps()}
-                            className="text-primary w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm font-semibold first-letter:capitalize hover:break-words"
+                            className="w-[325px] max-w-[325px] truncate whitespace-nowrap px-6 py-2 text-sm font-semibold text-primary first-letter:capitalize hover:break-words"
                             role="cell"
                           >
                             {cell.column.Cell.name === "defaultRenderer" ? (

@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Sofia_Sans";
-  src: url("../assets/fonts/Sofia_Sans/static/SofiaSans-Regular.ttf");
+@font-face {
+  font-family: "Work_Sans";
+  src: url("../assets/fonts/Work_Sans/static/WorkSans-Regular.ttf");
   font-family: 500;
-} */
+}
 
 @layer base {
   * {
-    /* @apply font-Sofia_Sans; */
+    @apply font-Work_Sans;
   }
 
   body {
-    /* @apply bg-c_blue text-white; */
+    @apply bg-white text-secondary;
   }
 
   /* Modifying the scroll bar */
@@ -45,16 +45,16 @@
 }
 
 @layer components {
-   .input {
-    @apply h-10 w-full border-b-2 border-secondary bg-transparent placeholder-transparent scrollbar-hide focus:border-secondary focus:outline-none;
+  .input {
+    @apply h-10 w-full border-b-2 border-primary bg-transparent placeholder-transparent scrollbar-hide focus:border-primary focus:outline-none;
   }
 
   .inputLabel {
-    @apply absolute left-0 -top-3.5 text-primary/50  transition-all peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-primary/50 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-primary;
+    @apply absolute left-0 -top-3.5 text-secondary/50  transition-all peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary/50 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-secondary;
   }
 
   .error {
-    @apply text-xs capitalize text-red-800;
+    @apply text-xs capitalize text-red-500;
   }
 
   /* .active {

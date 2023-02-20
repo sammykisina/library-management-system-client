@@ -3,7 +3,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import { useSetRecoilState } from "recoil";
 import { appAtoms } from "@/atoms";
-import { Dropdown, Icon, Profile, Title } from "@/components";
+import { Dropdown, Icon, NavLink, Profile, Title } from "@/components";
 import { HiBell, HiOutlineBell, HiOutlineUser, HiUser } from "react-icons/hi2";
 import { useAuth, useProfile } from "@/hooks";
 import { format, isEqual } from "date-fns";
@@ -45,7 +45,23 @@ const TopHeader = () => {
 
     switch (pathname) {
       case "/":
-        title = "Home";
+        title = "Dashboard";
+        break;
+
+      case "/auth/login":
+        title = "Login";
+        break;
+
+      case "/auth/signup":
+        title = "Sign Up";
+        break;
+
+      case "/ad/users":
+        title = "All Users";
+        break;
+
+      case "/ad/library":
+        title = "Library";
         break;
 
       default:
@@ -56,7 +72,7 @@ const TopHeader = () => {
   };
 
   return (
-    <nav className="border-primary/50 flex h-[50px] items-center justify-between rounded-md border px-2 sm:px-0">
+    <nav className="flex h-[50px] items-center justify-between rounded-xl border border-secondary/30 px-2 sm:px-0">
       <div className="flex items-center gap-x-4">
         <Icon
           icon={
@@ -77,8 +93,8 @@ const TopHeader = () => {
       {/* the rest of the icons */}
       <div className="flex items-center  gap-x-2">
         {/* the current user dropdown */}
-        {user && (
-          <div className="flex px-2">
+        {user ? (
+          <div className="flex items-center px-2">
             <Dropdown
               inactive={<HiOutlineUser className="icon" />}
               active={<HiUser className="icon" />}
@@ -95,6 +111,22 @@ const TopHeader = () => {
                 setDisplayState={setShowNotificationDropdown}
                 badge={}
               /> */}
+          </div>
+        ) : (
+          <div className="flex items-center px-2">
+            <NavLink
+              route={{ to: "/auth/login", name: "Login" }}
+              type="link"
+              fullWidth={false}
+              active={pathname === "/auth/login" && "activeLink"}
+            />
+
+            <NavLink
+              route={{ to: "/auth/signup", name: "Sign Up" }}
+              type="link"
+              fullWidth={false}
+              active={pathname === "/auth/signup" && "activeLink"}
+            />
           </div>
         )}
       </div>

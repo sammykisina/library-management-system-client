@@ -35,10 +35,10 @@ const GlobalFilter: FC<GlobalFilterProps> = ({
 
   return (
     <label className="flex items-baseline gap-x-2">
-      <div className="flex w-[200px] items-center  rounded-xl bg-orange/10 px-3">
+      <div className="flex w-[200px] items-center  rounded-xl bg-secondary/5 px-3">
         <Icon
           icon={<RiSearch2Line className="h-5 w-5" />}
-          iconWrapperStyles=" text-primary"
+          iconWrapperStyles=" text-secondary"
         />
         <input
           type="text"

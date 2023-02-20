@@ -13,6 +13,8 @@ import { authSchemas } from "@/schemas";
 import { type z } from "zod";
 import { useRouter } from "next/router";
 import { useAuth } from "@/hooks";
+import Image from "next/image";
+import { Lib } from "@/assets";
 
 const Login = () => {
   // page states
@@ -38,81 +40,92 @@ const Login = () => {
   if (user) router.push("/");
 
   return (
-    <section className="mx-auto flex h-full w-full max-w-[1100px] flex-col items-center justify-center  sm:px-[24px]">
-      {/* pos name */}
-      <div className="mb-5 flex flex-col items-center">
-        <Logo logoStyles="text-[3rem]" dotStyles="w-2 h-2 bg-c_dark" />
+    <section className="mx-auto flex h-full w-full max-w-[1100px] flex-col justify-center  sm:px-[24px]">
+      {/* into */}
+      <div className="mt-10 flex flex-col items-center ">
+        <Logo logoStyles="text-[3rem]" dotStyles="w-2 h-2 bg-primary" />
 
-        <div className="text-c_yellow text-lg">Checker. Its All You.</div>
+        <div className="text-c_yellow text-lg">The See Of Knowledge</div>
       </div>
 
-      {/* the Into section */}
-      <div className="mt-5 w-full px-6  sm:w-3/4 lg:w-1/2">
-        <Title title="Login" titleStyles="text-lg" />
+      {/* body */}
+      <div className="flex items-center">
+        <div className="flex flex-1 flex-col items-center justify-center ">
+          {/* the Into section */}
+          <div className="mt-5 w-full px-6 ">
+            <Title title="Login" titleStyles="text-lg" />
 
-        {/* the login details */}
-        <div className="mt-3">
-          <form className="space-y-1 py-2" onSubmit={handleSubmit(onSubmit)}>
-            <section className="flex w-full flex-col gap-4 py-3">
-              <div className="relative">
-                <input
-                  type="email"
-                  {...register("email")}
-                  className="input peer"
-                  placeholder="Email"
-                />
-                <label className="input_label">Email</label>
+            {/* the login details */}
+            <div className="mt-3">
+              <form
+                className="space-y-1 py-2"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <section className="flex w-full flex-col gap-4 py-3">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      {...register("email")}
+                      className="input peer"
+                      placeholder="Email"
+                    />
+                    <label className="inputLabel">Email</label>
 
-                {errors["email"] && (
-                  <Error errorMessage={errors["email"].message} />
-                )}
-              </div>
+                    {errors["email"] && (
+                      <Error errorMessage={errors["email"].message} />
+                    )}
+                  </div>
 
-              <div className="relative">
-                <input
-                  type="password"
-                  {...register("password")}
-                  className="input peer"
-                  placeholder="Password"
-                />
-                <label className="input_label">Password</label>
+                  <div className="relative">
+                    <input
+                      type="password"
+                      {...register("password")}
+                      className="input peer"
+                      placeholder="Password"
+                    />
+                    <label className="inputLabel">Password</label>
 
-                {errors["password"] && (
-                  <Error errorMessage={errors["password"].message} />
-                )}
-              </div>
-            </section>
+                    {errors["password"] && (
+                      <Error errorMessage={errors["password"].message} />
+                    )}
+                  </div>
+                </section>
 
-            <div className="flex justify-end">
-              <Button
-                title={
-                  isLogging ? <SpinnerLoader color="fill-white" /> : "Login"
-                }
-                intent="primary"
-                type="submit"
-              />
+                <div className="flex justify-end">
+                  <Button
+                    title={
+                      isLogging ? <SpinnerLoader color="fill-white" /> : "Login"
+                    }
+                    intent="primary"
+                    type="submit"
+                  />
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
 
-        <div className="mt-2 flex flex-col items-center">
-          <NavLink
-            route={{ to: "/forgot-password", name: "Forgot Password?" }}
-            // type="text_only"
-            fullWidth={false}
-          />
+            <div className="mt-2 flex flex-col items-center">
+              <NavLink
+                route={{ to: "/forgot-password", name: "Forgot Password?" }}
+                type="link"
+                fullWidth={false}
+              />
 
-          <div className="flex ">
-            <span>Don&lsquo;t have an account yet?</span>
-            <NavLink
-              route={{ to: "/signup", name: "Sign Up" }}
-              // type="text_only"
-              fullWidth={false}
-            />
+              <div className="flex items-center">
+                <span>Don&lsquo;t have an account yet?</span>
+                <NavLink
+                  route={{ to: "/auth/signup", name: "Sign Up" }}
+                  type="link"
+                  fullWidth={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
+        <div className="md:w-[20rem] xmd:w-[25rem]">
+          <Image src={Lib} alt="" className="hidden md:block" />
+        </div>
+      </div>
       {/* the Toaster */}
       <Toaster />
     </section>

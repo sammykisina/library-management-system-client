@@ -14,7 +14,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const showSidebar = useRecoilValue(showSidebarState);
   const { user, token } = useAuth();
 
-  if (!token) return <Login />;
+  // if (!token) return <Login />;
 
   return (
     <section className="relative mx-auto flex w-full max-w-[1200px]  sm:px-[20px]">
@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       {/* the sidebar */}
       <div
-        className={`absolute bg-[#f6f2fd] duration-300 sm:left-0   ${
+        className={`absolute bg-white duration-300 sm:left-0   ${
           showSidebar ? "left-0" : "-left-[100%]"
         } ${!user && "hidden"}`}
       >
@@ -32,13 +32,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       {/* the rest of the body */}
       <div
-        className={`h-screen max-w-[1200px] flex-1 overflow-x-scroll p-2 duration-300 scrollbar-hide sm:ml-[250px] ${
-          !user && "sm:ml-[0px]"
+        className={`h-screen max-w-[1200px] flex-1 overflow-x-scroll p-2 duration-300 scrollbar-hide  ${
+          !user ? "sm:ml-[0px]" : "sm:ml-[250px]"
         }`}
       >
         <TopHeader />
 
-        <div className="mt-5 h-[47rem] xs:h-[40rem]">{children}</div>
+        <div className="mt-5 h-[47rem]  xs:h-[39rem]">{children}</div>
       </div>
     </section>
   );
