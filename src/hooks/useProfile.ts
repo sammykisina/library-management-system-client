@@ -2,13 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import { AuthAPI } from "@/api";
 
-
 const useProfile = () => {
   /**
    * hook states
    */
   const { user } = useAuth();
- 
 
   /**
    * hook functions
@@ -18,15 +16,13 @@ const useProfile = () => {
     queryFn: async ({ queryKey }) => {
       const [_, role] = queryKey;
 
-      if (role === "student") {
-        return await AuthAPI.profile({ email: user?.email || "" });
+      if (role === "user") {
+        return await AuthAPI.profile(user?.id || 0);
       }
 
       return null;
     },
   });
-
- 
 
   return {
     profile,

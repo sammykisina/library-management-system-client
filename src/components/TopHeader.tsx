@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import { useSetRecoilState } from "recoil";
 import { appAtoms } from "@/atoms";
-import { Dropdown, Icon, NavLink, Profile, Title } from "@/components";
-import { HiBell, HiOutlineBell, HiOutlineUser, HiUser } from "react-icons/hi2";
+import {
+  Dropdown,
+  Icon,
+  NavLink,
+  Profile,
+  SpinnerLoader,
+  Title,
+} from "@/components";
+import { HiOutlineUser, HiUser } from "react-icons/hi2";
 import { useAuth, useProfile } from "@/hooks";
 import { format, isEqual } from "date-fns";
 
@@ -24,24 +31,34 @@ const TopHeader = () => {
 
   const { profile, isFetchingProfile } = useProfile();
 
-  // const todaysNotifications = profile?.relationships?.notifications?.filter(
-  //   (notification: any) =>
-  //     isEqual(
-  //       new Date(format(new Date(), "EE, MMM d, yyy")),
-  //       new Date(
-  //         format(
-  //           new Date(notification?.attributes?.createdAt),
-  //           "EE, MMM d, yyy"
-  //         )
-  //       )
-  //     )
-  // );
+  const todaysNotifications = profile?.relationships?.notifications?.filter(
+    (notification: any) =>
+      isEqual(
+        new Date(format(new Date(), "EE, MMM d, yyy")),
+        new Date(
+          format(
+            new Date(notification?.attributes?.createdAt),
+            "EE, MMM d, yyy"
+          )
+        )
+      )
+  );
+
+  const NotificationIndicator = () => (
+    <span className="text-sm ">
+      You have{" "}
+      <span className="rounded-full bg-gray-200/10 px-3 py-1  capitalize leading-loose text-primary shadow-sm">
+        {todaysNotifications?.length}
+      </span>{" "}
+      new notifications.
+    </span>
+  );
 
   /**
    * component function
    */
-  const getTitle: (pathname: string) => string = (pathname) => {
-    let title = "";
+  const getTitle: (pathname: string) => string | ReactNode = (pathname) => {
+    let title: string | ReactNode = "";
 
     switch (pathname) {
       case "/":
@@ -62,6 +79,30 @@ const TopHeader = () => {
 
       case "/ad/library":
         title = "Library";
+        break;
+
+      case "/us/books":
+        title = "Browse Books";
+        break;
+
+      case "/us/library-history":
+        title = "Library History";
+        break;
+
+      case "/us/profile":
+        title = "Your Profile";
+        break;
+
+      case "/us/notifications":
+        title = isFetchingProfile ? (
+          <SpinnerLoader color="fill-primary" size="w-4 h-4" />
+        ) : (
+          <NotificationIndicator />
+        );
+        break;
+
+      case "/ad/profile":
+        title = "Admin Profile";
         break;
 
       default:
@@ -102,15 +143,6 @@ const TopHeader = () => {
               displayState={showProfileDropdown}
               setDisplayState={setShowProfileDropdown}
             />
-
-            {/* <Dropdown
-                inactive={<HiOutlineBell className="icon" />}
-                active={<HiBell className="icon" />}
-                dropdownComponent={}
-                displayState={showNotificationDropdown}
-                setDisplayState={setShowNotificationDropdown}
-                badge={}
-              /> */}
           </div>
         ) : (
           <div className="flex items-center px-2">

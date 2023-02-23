@@ -2,17 +2,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ReactNode, FC } from "react";
 
 const buttonStyles = cva(
-  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none whitespace-nowrap",
+  "flex items-center justify-center px-4 py-2 rounded-full  focus:outline-none whitespace-nowrap disabled:cursor-not-allowed",
   {
     variants: {
       intent: {
         primary: "bg-primary text-white",
-        secondary: "bg-primary text-white",
+        secondary: "bg-secondary/10 text-secondary",
         danger: "bg-red-500 text-white",
         link: "text-primary font-semibold",
       },
       form: {
-        small: "h-[38px] gap-[6px] text-[14px]",
+        small: "h-[35px] gap-[6px] text-[12px]",
         medium: "h-[40px] gap-[8px] px-[16px] text-[16px]",
         large: "h-[56px] gap-[8px] px-[20px] text-[18px]",
       },

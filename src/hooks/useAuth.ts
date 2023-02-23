@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { AuthAPI } from "@/api";
 import type { LoginData, SignupData } from "src/types/typings.t";
 import { useRouter } from "next/navigation";
@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { Notifications } from "@/components";
 
 export type User = {
+  id: number;
   name: string;
   email: string;
   role: string;

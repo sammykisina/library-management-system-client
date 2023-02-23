@@ -17,7 +17,7 @@ const Users = () => {
   return (
     <section className="h-full">
       {/* title */}
-      <Title title="Users." />
+      <Title title="USERS." />
 
       {/* the  body */}
       <section className="mt-5">

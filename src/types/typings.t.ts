@@ -17,3 +17,8 @@ export type Route = {
   name?: string | ReactNode;
   to: string;
 };
+
+export type SelectionOption = {
+  name: string;
+  value: string;
+};

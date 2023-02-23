@@ -9,7 +9,7 @@ const Sidebar = () => {
    */
   const { logout, user } = useAuth();
   const pathname = usePathname();
-  const { commonRoutes, librarianRoutes } = routers;
+  const { commonRoutes, librarianRoutes, userRoutes } = routers;
 
   /**
    * component functions
@@ -36,6 +36,20 @@ const Sidebar = () => {
                   type="medium"
                   fullWidth={true}
                   active={pathname === librarianRoute.to && "navLinkActive"}
+                />
+              ))}
+
+          {/* user (library user ) routes*/}
+          {user?.role === "user" &&
+            commonRoutes
+              .concat(userRoutes)
+              .map((userRoute, routeIndex) => (
+                <NavLink
+                  key={routeIndex}
+                  route={userRoute}
+                  type="medium"
+                  fullWidth={true}
+                  active={pathname === userRoute.to && "navLinkActive"}
                 />
               ))}
         </ul>

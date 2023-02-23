@@ -1,1 +1,1 @@
-export { default as APITypes } from "./types";
+export { default as types } from "./types";

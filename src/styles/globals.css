@@ -54,7 +54,7 @@
   }
 
   .error {
-    @apply text-xs capitalize text-red-500;
+    @apply w-fit text-xs capitalize text-red-500;
   }
 
   /* .active {

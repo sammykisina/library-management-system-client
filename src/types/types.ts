@@ -1,16 +1,33 @@
-import { number, object, string } from "zod";
+import { object, string } from "zod";
 
-const APIUser = object({
-  id: number(),
-  type: string(),
-  attributes: object({
-    name: string(),
-    email: string(),
-  }),
+const Book = object({
+  isbn: string(),
+  name: string(),
+  author: string(),
+  publisher: string(),
+  yearOfPublish: string(),
+  price: string(),
+  description: string(),
+  count: string(),
+  pages: string(),
+  status: string(),
 });
 
-const APITypes = {
-  APIUser,
+const BookLocation = object({
+  block: string(),
+  shelve: string(),
+  row: string(),
+});
+
+const Borrow = object({
+  dateBorrowed: string(),
+  dateToReturn: string(),
+});
+
+const types = {
+  Book,
+  BookLocation,
+  Borrow,
 };
 
-export default APITypes;
+export default types;

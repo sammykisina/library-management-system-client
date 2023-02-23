@@ -51,6 +51,8 @@ const passwordUpdateSchema = object({
   path: ["confirm"],
 });
 
+
+
 const authSchemas = { loginSchema, signupSchema, passwordUpdateSchema };
 
 export default authSchemas;

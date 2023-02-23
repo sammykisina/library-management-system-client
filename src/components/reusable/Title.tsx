@@ -1,7 +1,7 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 interface TitleProps {
-  title: string;
+  title: string | ReactNode;
   titleStyles?: string;
 }
 

@@ -28,7 +28,8 @@
       "@/atoms": ["src/atoms"],
       "@/schemas": ["src/schemas"],
       "@/api": ["src/api"],
-      "@/utils": ["src/utils"]
+      "@/utils": ["src/utils"],
+      "@/types": ["src/types"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
